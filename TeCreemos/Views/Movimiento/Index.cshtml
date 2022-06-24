@@ -1,0 +1,79 @@
+﻿@model IEnumerable<TeCreemos.Models.movimiento>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int idCta = ViewBag.idCuenta;
+}
+
+@section Scripts{
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script scr="~/lib\jquery\dist\jquery.js"></script>
+    <script scr="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+}
+
+<style type="text/css">
+            body{
+            width:75%;
+            margin: auto;
+            padding-top: 0%;
+        }
+</style>
+
+    <div class="row">
+        <div class="col-md-3 ConteControl">
+            <h1>Movimientos</h1>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
+        <div class="col-md-4 ConteControl">
+             @Html.ActionLink("Alta Movimiento", "Create", new { idCta = idCta }, new { @type = "button", @class ="btn btn-success" })
+        </div>
+    </div>
+    <br/>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                 @Html.DisplayName("REFERENCIA")
+            </th>
+            <th>
+                 @Html.DisplayName("FECHA MOVIMIENTO")
+            </th>
+            <th>
+                 @Html.DisplayName("IMPORTE")
+            </th>
+            <th>
+                 @Html.DisplayName("CARGO")
+            </th>
+            <th>
+                 @Html.DisplayName("ABONO")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+ @if (Model!=null) { 
+        @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.referencia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fechaMovimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.importe)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cargo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.abono)
+            </td>
+        </tr>
+}
+        }
+    </tbody>
+</table>

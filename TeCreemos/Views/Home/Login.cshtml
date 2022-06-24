@@ -1,0 +1,54 @@
+﻿@model  TeCreemos.Models.Login
+
+@{
+    ViewBag.Title = "Login";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script scr="~/lib\jquery\dist\jquery.js"></script>
+    <script scr="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <style>
+        body{
+            width:75%;
+            margin: auto;
+            padding-top: 2%;
+        }
+      </style>
+</head>
+<BODY>
+    <DIV CLASS="ROW CENTER-BLOCK">
+        <DIV CLASS="ROW CENTER-block">
+                   @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", @Id = "frmRequest", @name = "frmRequest" }))
+        {
+                     <div class="row">
+                        <div class="col-md-4 ConteControl">
+                       <label> Login</label><br/>
+                        <input class="form-control"  name="Login"  type="text" id="txtClave" required />
+                    </div>
+                     </div>
+                        <div class="row">
+                        <div class="col-sm-4 ConteControl">
+                         <label> Password</label><br/>
+                        <input class="form-control"  name="Password"  type="text" id="txtPassword" required />
+                    </div>
+                     </div>
+                 <div class="row">
+                    <div class="form-group"><br/>
+                         @Html.ActionLink("Cancelar", "Login", "Home", null, new { @type = "button", @class = "btn btn-danger pull-right" })
+                        <button type="submit"  class="btn btn-success" value="Entrar" onclick="">Entrar</button>
+                    </div>
+                    </div>
+                    <div class="danger">
+                        @ViewBag.Error
+                    </div>        
+    }
+     </div>
+    </div>
+</body>
+</html>
+

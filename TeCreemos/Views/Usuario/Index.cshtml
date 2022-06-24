@@ -1,0 +1,30 @@
+﻿@model List<TeCreemos.Models.usuario>
+@{
+    ViewData["Title"] = "Index";
+    List<SelectListItem> estatus = (List<SelectListItem>)ViewBag.Estatus;
+    List<SelectListItem> movimiento = (List<SelectListItem>)ViewBag.tipoMov;
+}
+
+<h1>Usuarios</h1>
+
+<table>
+    <tr>
+        <th>Clave</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Estatus</th>
+    </tr>
+
+
+    @foreach (var user in Model)
+    {
+<tr>
+    <td>@user.claveAcceso</td>
+    <td>@user.nombre</td>
+    <td>@user.apellidos</td>
+    <td>@Html.DropDownList("estatus", estatus, "Favor de selecionar un Estatus", new { @class = "form-control" })</td>
+</tr>
+
+    }
+</table>
+

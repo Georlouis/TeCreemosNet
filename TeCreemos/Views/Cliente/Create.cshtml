@@ -1,0 +1,92 @@
+﻿@model TeCreemos.Models.DB.CatClientes
+
+@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> estatus = (List<SelectListItem>)ViewBag.Estatus;
+    List<SelectListItem> tipoPersona = (List<SelectListItem>)ViewBag.tipoPersona;
+    List<SelectListItem> tipoIdentificacion = (List<SelectListItem>)ViewBag.tipoIdentificacion;
+    
+}
+
+<div class="row">
+    <div class="col-md-3 ConteControl">
+        <h1>Alta Cliente</h1>
+    </div>
+</div>
+<br />
+
+        <form asp-action="Create">
+            <div class="row">
+                 <div class="col-md-4 ConteControl">
+                <label>CLAVE</label>
+                <input asp-for="Clave" class="form-control" required />
+                <span asp-validation-for="Clave" class="text-danger"></span>
+            </div>
+            <div class="col-md-4 ConteControl">
+                   <label>PERSONA</label>
+                @Html.DropDownList("tipoPersona", tipoPersona, "Seleccione un tipo de cliente", new { @class = "form-control", @required = "required" })
+                <span asp-validation-for="TipoPersona" class="text-danger"></span>  
+                  </div>
+                <div class="col-md-4 ConteControl">     
+                    <label>NOMBRE</label>
+                      <input asp-for="NombreRazonSocial" class="form-control" required />
+                      <span asp-validation-for="NombreRazonSocial" class="text-danger"></span>
+                       </div>
+            </div>
+        <br/>
+          <div class="row">
+                <div class="col-md-4 ConteControl">
+                 <label>APELLIDO PATERNO</label>
+                <input asp-for="ApellidoPaterno" class="form-control" />
+                <span class="field-validation-valid text-danger" asp-validation-for="ApellidoPaterno"  style="visibility:collapse"></span>
+             </div>
+             <div class="col-md-4 ConteControl">
+                 <label>APELLIDO MATERNO</label>
+                <input asp-for="ApellidoMaterno" class="form-control" />
+                <span class="field-validation-valid text-danger" asp-validation-for="ApellidoMaterno"  style="visibility:collapse"></span>
+            </div>
+            <div class="col-md-4 ConteControl">
+                <label>RFC</label>
+                <input asp-for="Rfc" class="form-control" required />
+                <span class="field-validation-valid text-danger" asp-validation-for="Rfc"  style="visibility:collapse"></span>
+            </div>
+             </div>
+             <br/>
+            <div class="row">
+                <div class="col-md-4 ConteControl">
+                <label>IDENTIFICACIÓN:</label>
+                @Html.DropDownList("IdTipoIdentificacion", tipoIdentificacion, "Seleccione:", new { @class = "form-control", required = "required" })
+            </div>
+             <div class="col-md-4 ConteControl">
+                 <label>NÚMERO IDENTIFICACIÓN:</label>
+                <input asp-for="NumeroIdentificacion" class="form-control" required />
+                <span class="field-validation-valid text-danger" asp-validation-for="NumeroIdentificacion"  style="visibility:collapse"></span>
+            </div>
+            <div class="col-md-4 ConteControl">
+                <label>ESTATUS:</label>
+                <select asp-for="IdEstatus" class="form-control" asp-items="ViewBag.estatus" required></select>
+            </div>
+             </div>
+             <br/>
+            <div class="row">
+                <div class="col-md-4 ConteControl">
+                 <label>FECHA ALTA:</label>
+                <input asp-for="FechaAlta" class="form-control" required />
+                <span class="field-validation-valid text-danger" asp-validation-for="FechaAlta"  style="visibility:collapse"></span>
+            </div>
+            </div>
+            <br/>
+            <input type="hidden" asp-for="IdUsuarioAlta" value="1" class="form-control" required></input>
+
+             <div class="row">
+             <div class="col-md-2 ConteControl">
+                @Html.ActionLink("Regresar", "Index", "Cliente", null, new { @type = "button", @class = "btn btn-warning pull-right" })
+             </div>
+             <div class="col-md-2 ConteControl">
+                <input type="submit" value="Guardar" class="btn btn-success" />
+            </div>
+            </div>
+        </form>
+
+

@@ -1,0 +1,77 @@
+﻿@model TeCreemos.Models.DB.CuentaCliente
+
+@{
+    ViewBag.Title = "Alta Cuenta";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+        List<SelectListItem> estatus = (List<SelectListItem>)ViewBag.Estatus;
+        List<SelectListItem> tipoCuenta = (List<SelectListItem>)ViewBag.tipoCuenta;
+}
+@section Scripts{
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script scr="~/lib\jquery\dist\jquery.js"></script>
+    <script scr="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+}
+<style type="text/css">
+    body {
+        width: 75%;
+        margin: auto;
+        padding-top: 0%;
+    }
+</style>
+<div class="row">
+    <div class="col-md-3 ConteControl">
+        <h1>Alta Cuenta</h1>
+    </div>
+</div>
+<br />
+
+<form asp-action="Create">
+    <div class="row">
+        <div class="col-md-4 ConteControl">
+            <label>CLAVE CLIENTE:</label>
+            @Html.TextBox("Cliente", null, new { @class = "form-control", required = "required" })
+        </div>
+        <div class="col-md-4 ConteControl">
+            <label>TIPO DE CUENTA:</label>
+            @Html.DropDownList("IdTipoCuenta", tipoCuenta, "Seleccione:", new { @class = "form-control",
+            required = "required" })
+        </div>
+        <div class="col-md-4 ConteControl">
+            <label>NUMERO CUENTA:</label>
+            <input asp-for="Numero" class="form-control" required />
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-4 ConteControl">
+            <label>SALDO:</label>
+            <input type="number" asp-for="Saldo" class="form-control" min="1" />
+            <span class="field-validation-valid text-danger" asp-validation-for="Saldo"
+                style="visibility:collapse"></span>
+        </div>
+        <div class="col-md-4 ConteControl">
+            <label>FECHA ALTA:</label>
+            <input asp-for="FechaAlta" class="form-control" required />
+            <span class="field-validation-valid text-danger" asp-validation-for="FechaAlta"
+                style="visibility:collapse"></span>
+        </div>
+        <div class="col-md-4 ConteControl">
+            <label>ESTATUS:</label>
+            @Html.DropDownList("IdEstatus", estatus, "Seleccione:", new { @class = "form-control",
+            required = "required" })
+        </div>
+    </div>
+    <br />
+    @**@
+    <input type="hidden" name="IdUsuarioAlta" id="IdUsuarioAlta" />
+    @**@
+    <div class="row">
+        <div class="col-md-2 ConteControl">
+            @Html.ActionLink("Regresar", "Index", null, null, new { @type = "button", @class = "btn btn-danger pull-right" })
+        </div>
+        <div class="col-md-2 ConteControl">
+            <input type="submit" value="Guardar" class="btn btn-success" />
+        </div>
+    </div>
+</form>

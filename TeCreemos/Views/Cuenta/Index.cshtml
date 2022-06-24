@@ -1,0 +1,108 @@
+﻿@model IEnumerable<TeCreemos.Models.cuenta>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<SelectListItem> tipoFiltro = (List<SelectListItem>)ViewBag.tipoFiltro;
+    string ClaveCte = ViewBag.ClaveCte;
+}
+@section Scripts{
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script scr="~/lib\jquery\dist\jquery.js"></script>
+    <script scr="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+}
+
+<style type="text/css">
+            body{
+            width:75%;
+            margin: auto;
+            padding-top: 0%;
+        }
+</style>
+
+    <div class="row">
+        <div class="col-md-3 ConteControl">
+            <h1>Cuentas</h1>
+        </div>
+        <div class="col-md-4 ConteControl">
+            @Html.ActionLink("Nuevo Cuenta", "Create", "Cuenta", null, new { @type = "button", @class = "btn btn-success pull-right" })
+        </div>
+    </div>
+    <br/>
+@using (Html.BeginForm())
+{
+
+
+    <div class="row">
+        <div class="col-md-3 ConteControl">
+                <b>Tipo:</b>
+                @Html.DropDownList("tipoFiltro", tipoFiltro, "Seleccione:", new { @class = "form-control", required = "required" })
+            </div>
+            <div class="col-md-4 ConteControl">
+                <b>Buscar:</b>
+                @Html.TextBox("Criterio",ClaveCte,new {@class="form-control", required="required"})
+            </div>
+                <div class="col-md-4 ConteControl">
+               <b>.</b>
+            <div class="col-md-1"><input type="submit" value="Buscar" class="btn btn-secondary" /></div>
+        </div>
+    
+        </div>
+        <br/>
+  
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("NUMERO")
+                </th>
+                <th>
+                    @Html.DisplayName("CLAVE CLIENTE")
+                </th>
+                <th>
+                    @Html.DisplayName("TIPO CUENTA")
+                </th>
+                <th>
+                    @Html.DisplayName("ESTAUS")
+                </th>
+                <th>
+                    @Html.DisplayName("SALDO")
+                </th>
+                <th>
+                    @Html.DisplayName("FECHA ALTA")
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numero)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.claveCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipoCuenta)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estatus)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.saldo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fechaAlta)
+                </td>
+            <td>
+                @Html.ActionLink("Movimientos", "Index", "Movimiento",new { id = item.id }, new { @type = "button", @class ="btn btn-primary" })
+            </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}

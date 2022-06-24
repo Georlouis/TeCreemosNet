@@ -1,0 +1,100 @@
+﻿@model IEnumerable<TeCreemos.Models.cliente> //se carga modelo cliente
+
+    @{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+
+    @section Scripts{
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script scr="~/lib\jquery\dist\jquery.js"></script>
+    <script scr="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    }
+
+    <style type="text/css">
+        body {
+            width: 75%;
+            margin: auto;
+            padding-top: 0%;
+        }
+    </style>
+    <div class="row">
+        <div class="col-md-3 ConteControl">
+            <h1>Clientes</h1>
+        </div>
+        <div class="col-md-4 ConteControl">
+            @Html.ActionLink("Nuevo Cliente", "Create", "Cliente", null, new { @type = "button", @class = "btn btn-success pull-right" })
+        </div>
+    </div>
+    @*diseño de tabla (thead Encabezados)*@
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("CLAVE")
+                </th>
+                <th>
+                    @Html.DisplayName("NOMBRE")
+                </th>
+                <th>
+                    @Html.DisplayName("APELLIDO")
+                </th>
+                <th>
+                    @Html.DisplayName("RFC")
+                </th>
+                <th>
+                    @Html.DisplayName("PERSONA")
+                </th>
+                <th>
+                    @Html.DisplayName("IDENTIFICACION")
+                </th>
+                <th>
+                    @Html.DisplayName("NUMERO IDENTIFICACIÓN")
+                </th>
+                <th>
+                    @Html.DisplayName("STATUS")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @* Celadas de la tabla *@
+            @*Se realiza recorrido del modelo*@
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.clave)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.apellidos)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.rfc)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipoPersona)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipoIdentificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.numeroIdentificacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.estatus)
+                </td>
+                <td>
+                    @Html.ActionLink("Cuenta", "Index", "Cuenta",new { id = item.id }, new { @type = "button", @class ="btn btn-primary" })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
